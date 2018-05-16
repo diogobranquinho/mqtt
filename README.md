@@ -1,5 +1,5 @@
 # Exemplo de MQTT em Python
-Utilização do microframework Tornado para realizar a comunicação entre browser e servidor via websockets.
+Utilização da biblioteca Paho-Mqtt para realizar a comunicação via MQTT.
 
 ## Pré-requisitos
 Para esse exemplo funcionar é necessário o uso do Python 2.7 e da biblioteca Paho-Mqtt.
