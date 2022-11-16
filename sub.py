@@ -14,11 +14,12 @@ def on_connect(con, userdata, flags, rc):
 def on_message(con, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
+print("Running sub")
 con = mqtt.Client()
 con.on_connect = on_connect
 con.on_message = on_message
 
-con.connect("iot.eclipse.org", 1883, 60)
+con.connect("test.mosquitto.org", 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.

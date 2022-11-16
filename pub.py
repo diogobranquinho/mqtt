@@ -3,7 +3,7 @@
 import paho.mqtt.client as mqtt
 
 con = mqtt.Client()
-con.connect("iot.eclipse.org", 1883, 60)
+con.connect("test.mosquitto.org", 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
@@ -11,6 +11,7 @@ con.connect("iot.eclipse.org", 1883, 60)
 # manual interface.
 con.loop_start()
 
+print("Running pub")
 while True:
-	msg = raw_input()
+	msg = input()
 	con.publish("fatec/bdd/g1/",str(msg))

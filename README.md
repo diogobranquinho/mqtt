@@ -2,7 +2,7 @@
 Utilização da biblioteca Paho-Mqtt para realizar a comunicação via MQTT.
 
 ## Pré-requisitos
-Para esse exemplo funcionar é necessário o uso do Python 2.7 e da biblioteca Paho-Mqtt.
+Para esse exemplo funcionar é necessário o uso do Python 3 e da biblioteca Paho-Mqtt.
 
 ### Instalando o Paho-Mqtt
 ```
