@@ -27,7 +27,7 @@ pip install paho-mqtt
 | `sub.py` | Assina o tópico e mostra as mensagens recebidas  |
 | `pub.py` | Publica no tópico as mensagens digitadas         |
 
-Os dois usam o broker público `test.mosquitto.org` e o tópico `fatec/bdd/g1/`.
+Os dois usam o broker público `test.mosquitto.org` e o tópico `fatec/ipc/g1/`.
 
 ## Passo a passo
 
@@ -58,7 +58,7 @@ Ola turma
 No terminal do assinante:
 
 ```
-fatec/bdd/g1/ Ola turma
+fatec/ipc/g1/ Ola turma
 ```
 
 Para sair do publicador pressione CTRL+X e depois Enter. Para sair do assinante pressione CTRL+C.
