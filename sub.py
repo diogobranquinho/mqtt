@@ -1,28 +1,27 @@
-#MQTT Sub example
-
+#Assinante MQTT
 import paho.mqtt.client as mqtt
 
-# The callback for when the client receives a CONNACK response from the server.
-def on_connect(con, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+print('Assinante MQTT')
+# Endereco do broker MQTT
+BROKER = 'test.mosquitto.org'
+# Porta do broker
+PORT = 1883
+# Topico que sera assinado
+TOPICO = 'fatec/bdd/g1/'
 
-    # Subscribing in on_connect() means that if we lose the connection and
-    # reconnect then subscriptions will be renewed.
-    con.subscribe("fatec/bdd/g1/")
+# Executado quando a conexao com o broker e estabelecida
+def on_connect(con, userdata, flags, reason_code, properties):
+    print('Conectado ao broker:', reason_code)
+    # Assinar aqui garante que a assinatura volta se a conexao cair
+    con.subscribe(TOPICO)
 
-# The callback for when a PUBLISH message is received from the server.
+# Executado a cada mensagem recebida no topico
 def on_message(con, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print(msg.topic, msg.payload.decode())
 
-print("Running sub")
-con = mqtt.Client()
+con = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 con.on_connect = on_connect
 con.on_message = on_message
-
-con.connect("test.mosquitto.org", 1883, 60)
-
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
+con.connect(BROKER, PORT, 60)
+# Fica esperando mensagens (para sair use CTRL+C)
 con.loop_forever()

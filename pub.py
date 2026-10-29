@@ -1,17 +1,23 @@
-#MQTT Pub example
-
+#Publicador MQTT
 import paho.mqtt.client as mqtt
 
-con = mqtt.Client()
-con.connect("test.mosquitto.org", 1883, 60)
+print('Publicador MQTT')
+# Endereco do broker MQTT
+BROKER = 'test.mosquitto.org'
+# Porta do broker
+PORT = 1883
+# Topico onde as mensagens serao publicadas
+TOPICO = 'fatec/bdd/g1/'
 
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
+con = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+con.connect(BROKER, PORT, 60)
+# Trata a comunicacao com o broker em segundo plano
 con.loop_start()
 
-print("Running pub")
-while True:
-	msg = input()
-	con.publish("fatec/bdd/g1/",str(msg))
+print ('Para sair use CTRL+X\n')
+msg = input()
+while msg != '\x18':
+    con.publish(TOPICO, msg)
+    msg = input()
+con.loop_stop()
+con.disconnect()
