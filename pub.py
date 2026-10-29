@@ -7,7 +7,7 @@ BROKER = 'test.mosquitto.org'
 # Porta do broker
 PORT = 1883
 # Topico onde as mensagens serao publicadas
-TOPICO = 'fatec/bdd/g1/'
+TOPICO = 'fatec/ipc/g1/'
 
 con = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 con.connect(BROKER, PORT, 60)

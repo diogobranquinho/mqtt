@@ -7,7 +7,7 @@ BROKER = 'test.mosquitto.org'
 # Porta do broker
 PORT = 1883
 # Topico que sera assinado
-TOPICO = 'fatec/bdd/g1/'
+TOPICO = 'fatec/ipc/g1/'
 
 # Executado quando a conexao com o broker e estabelecida
 def on_connect(con, userdata, flags, reason_code, properties):
