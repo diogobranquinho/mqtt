@@ -8,16 +8,18 @@ BROKER = 'test.mosquitto.org'
 PORT = 1883
 # Topico que sera assinado
 TOPICO = 'fatec/ipc/g1/'
+# Qualidade de servico da assinatura (0, 1 ou 2)
+QOS = 0
 
 # Executado quando a conexao com o broker e estabelecida
 def on_connect(con, userdata, flags, reason_code, properties):
     print('Conectado ao broker:', reason_code)
     # Assinar aqui garante que a assinatura volta se a conexao cair
-    con.subscribe(TOPICO)
+    con.subscribe(TOPICO, QOS)
 
 # Executado a cada mensagem recebida no topico
 def on_message(con, userdata, msg):
-    print(msg.topic, msg.payload.decode())
+    print('QoS', msg.qos, msg.topic, msg.payload.decode())
 
 con = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 con.on_connect = on_connect

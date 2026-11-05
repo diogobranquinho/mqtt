@@ -8,6 +8,8 @@ BROKER = 'test.mosquitto.org'
 PORT = 1883
 # Topico onde as mensagens serao publicadas
 TOPICO = 'fatec/ipc/g1/'
+# Qualidade de servico da publicacao (0, 1 ou 2)
+QOS = 0
 
 con = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 con.connect(BROKER, PORT, 60)
@@ -17,7 +19,7 @@ con.loop_start()
 print ('Para sair use CTRL+X\n')
 msg = input()
 while msg != '\x18':
-    con.publish(TOPICO, msg)
+    con.publish(TOPICO, msg, QOS)
     msg = input()
 con.loop_stop()
 con.disconnect()
